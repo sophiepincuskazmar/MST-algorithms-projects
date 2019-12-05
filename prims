@@ -1,0 +1,32 @@
+import math
+
+def prims(adjMatrix, i): #adjMatrix is a 2d list ixj
+	inMST = []
+	priority = []
+	predecessor = []
+	for x in range(i):
+		inMST[x] = False
+		priority[x] = math.inf
+
+	priority[0] = 0
+	numAdded = 0
+
+	while numAdded < i:
+		min = 0
+		for k in range(i):
+			if priority[k] < priority[min] and k not in inMST:
+				min = k
+		inMST[k] = True
+		numAdded += 1
+		for k in range(i):
+			if k != v and adjMatrix[v][k]:
+				if priority[k] > adjMatrix[v][k]:
+					priority[k] = adjMatrix[v][k]
+					predecessor[k] = v
+
+	print(inMST)
+	print(predecessor)
+
+
+matrix = [[0, 5, 1, 3],[5, 0, 3, 1],[1, 3, 0, 2],[3, 1, 2, 0]]
+prims(matrix, 4)
